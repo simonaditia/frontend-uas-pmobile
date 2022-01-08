@@ -1,57 +1,154 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:simonaditia_uas_pmobile/pages/home/main_body_page.dart';
-import 'package:simonaditia_uas_pmobile/pages/home/navigation_drawer.dart';
-import 'package:simonaditia_uas_pmobile/pages/home/profile_body_page.dart';
-import 'package:simonaditia_uas_pmobile/pages/home/work_body_page.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
-class WorkPage extends StatefulWidget {
-  const WorkPage({Key? key}) : super(key: key);
-  static final String title = "Work";
+class SkillBodyPage extends StatefulWidget {
+  // const SkillBodyPage({Key? key}) : super(key: key);
 
   @override
-  State<WorkPage> createState() => _WorkPageState();
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Work',
-      theme: ThemeData(
-        scaffoldBackgroundColor: thirdColor,
-        primaryColor: primaryColor,
-        textTheme: Theme.of(context).textTheme.apply(bodyColor: thirdTextColor),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-    );
-  }
+  State<SkillBodyPage> createState() => _SkillBodyPageState();
 }
 
-class _WorkPageState extends State<WorkPage> {
+class _SkillBodyPageState extends State<SkillBodyPage> {
+  Future<void> showInformationDialog(BuildContext context) async {
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          final TextEditingController _textEditingController =
+              TextEditingController();
+          bool isChecked = false;
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          showEdit();
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10.0),
+                          child: Text(
+                            "Edit",
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              color: Color(0xFF000000),
+                              fontWeight: regular,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(top: 10.0),
+                          child: Divider(color: Colors.black)),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          margin: EdgeInsets.only(top: 10.0),
+                          child: Text(
+                            "Delete",
+                            style: GoogleFonts.poppins(
+                              fontSize: 18,
+                              color: Color(0xFFEA5147),
+                              fontWeight: regular,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+            );
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: NavigationDrawer(),
-      appBar: AppBar(
-        title: Text(
-          WorkPage.title,
-          style: TextStyle(color: primaryColor),
-        ),
-        backgroundColor: thirdColor,
-        centerTitle: true,
-        iconTheme: IconThemeData(color: primaryColor),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          showButtons();
+    Size size = MediaQuery.of(context).size;
+
+    Widget mySkill(String name) {
+      return GestureDetector(
+        onTap: () async {
+          await showInformationDialog(context);
+          // createAlertDialog(context).then((onValue) {
+          //   SnackBar mySnackBar = SnackBar(context: Text("Hello $onValue"));
+          //   Scaffold.of(context).showSnackBar(mySnackBar);
+          // });
         },
+        child: Container(
+          // margin: EdgeInsets.symmetric(horizontal: 20),
+          margin:
+              EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 0.0),
+          // height: 179,
+          decoration: BoxDecoration(
+            color: thirdColor,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 3,
+                offset: Offset(0, 1),
+              ),
+            ],
+          ),
+          child: Container(
+            height: 60,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 25),
+                  child: Text(
+                    name,
+                    style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      color: Color(0xFF3D3D3D),
+                      fontWeight: regular,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Scaffold(
+      backgroundColor: thirdColor,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            mySkill("Microsoft Office"),
+            mySkill("Figma"),
+            mySkill("Canva"),
+            mySkill("PHP"),
+            mySkill("CSS"),
+            mySkill("Javascript"),
+            mySkill("Laravel"),
+            mySkill("Java"),
+            mySkill("Adobe Premiere"),
+            Container(
+              margin: EdgeInsets.only(top: 40),
+            )
+          ],
+        ),
       ),
-      body: WorkBodyPage(),
     );
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final TextEditingController _textEditingController = TextEditingController();
-  void showButtons() {
+
+  void showEdit() {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -63,7 +160,7 @@ class _WorkPageState extends State<WorkPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Add Work",
+                      "Edit Skill",
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         color: Color(0xFF3D3D3D),

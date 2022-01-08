@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/main_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/profile_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/skill_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/work_page.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
@@ -39,6 +40,7 @@ class NavigationDrawer extends StatelessWidget {
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Skill', icon: Icons.star,
+              onClicked: () => selectedItem(context, 3),
               // icon: ImageIcon(AssetImage('assets/icon_work.png'))
             ),
             const SizedBox(height: 16),
@@ -106,6 +108,13 @@ class NavigationDrawer extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => WorkPage(),
+          ),
+        );
+        break;
+      case 3:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => SkillPage(),
           ),
         );
         break;

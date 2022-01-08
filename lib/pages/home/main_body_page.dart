@@ -13,78 +13,83 @@ class MainBodyPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: 179,
-              child: Stack(
-                children: [
-                  Container(
-                    height: size.height * 0.2 - 15,
-                    decoration: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(36),
-                        bottomRight: Radius.circular(36),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    child: Container(
-                      // margin: EdgeInsets.symmetric(horizontal: 20),
-                      margin: EdgeInsets.only(
-                          left: 20.0, right: 20.0, top: 40.0, bottom: 0.0),
-                      // height: 179,
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/profile');
+              },
+              child: Container(
+                height: 179,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: size.height * 0.2 - 15,
                       decoration: BoxDecoration(
-                        color: thirdColor,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
-                            spreadRadius: 1,
-                            blurRadius: 3,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(top: 10),
-                              child: CircleAvatar(
-                                backgroundImage: AssetImage(
-                                  'assets/icon_s1.png',
-                                ),
-                                radius: 30,
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(top: 3),
-                              child: Text(
-                                'Hello Gaiss',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 24,
-                                  color: Color(0xFF3D3D3D),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(bottom: 5),
-                              child: Text(
-                                'Informatics Engineering Student',
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: Color(0xFF6B686D),
-                                ),
-                              ),
-                            ),
-                          ],
+                        color: primaryColor,
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(36),
+                          bottomRight: Radius.circular(36),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      child: Container(
+                        // margin: EdgeInsets.symmetric(horizontal: 20),
+                        margin: EdgeInsets.only(
+                            left: 20.0, right: 20.0, top: 40.0, bottom: 0.0),
+                        // height: 179,
+                        decoration: BoxDecoration(
+                          color: thirdColor,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.3),
+                              spreadRadius: 1,
+                              blurRadius: 3,
+                              offset: Offset(0, 1),
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 10),
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                    'assets/icon_s1.png',
+                                  ),
+                                  radius: 30,
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 3),
+                                child: Text(
+                                  'Hello Gaiss',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 24,
+                                    color: Color(0xFF3D3D3D),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  'Informatics Engineering Student',
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 14,
+                                    color: Color(0xFF6B686D),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             Container(

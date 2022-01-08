@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/edit_profile_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/main_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/profile_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/skill_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/work_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/sign_in_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/sign_up_page.dart';
@@ -22,8 +24,10 @@ class MyApp extends StatelessWidget {
         '/sign-in': (context) => SignInPage(),
         '/sign-up': (context) => SignUpPage(),
         '/home': (context) => MainPage(),
+        '/profile': (context) => ProfilePage(),
         '/edit-profile': (context) => EditProfilePage(),
         '/work': (context) => WorkPage(),
+        '/skill': (context) => SkillPage(),
       },
       // home: SplashPage(),
     );

@@ -3,18 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/main_body_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/navigation_drawer.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/profile_body_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/skill_body_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/work_body_page.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
-class WorkPage extends StatefulWidget {
-  const WorkPage({Key? key}) : super(key: key);
-  static final String title = "Work";
+class SkillPage extends StatefulWidget {
+  const SkillPage({Key? key}) : super(key: key);
+  static final String title = "Skill";
 
   @override
-  State<WorkPage> createState() => _WorkPageState();
+  State<SkillPage> createState() => _SkillPageState();
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Work',
+      title: 'Skill',
       theme: ThemeData(
         scaffoldBackgroundColor: thirdColor,
         primaryColor: primaryColor,
@@ -25,14 +26,14 @@ class WorkPage extends StatefulWidget {
   }
 }
 
-class _WorkPageState extends State<WorkPage> {
+class _SkillPageState extends State<SkillPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawer(),
       appBar: AppBar(
         title: Text(
-          WorkPage.title,
+          SkillPage.title,
           style: TextStyle(color: primaryColor),
         ),
         backgroundColor: thirdColor,
@@ -45,7 +46,7 @@ class _WorkPageState extends State<WorkPage> {
           showButtons();
         },
       ),
-      body: WorkBodyPage(),
+      body: SkillBodyPage(),
     );
   }
 
@@ -63,7 +64,7 @@ class _WorkPageState extends State<WorkPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Add Work",
+                      "Add Skill",
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         color: Color(0xFF3D3D3D),

@@ -27,6 +27,12 @@ TextStyle thirdTextStyle = GoogleFonts.poppins(
   color: thirdTextColor,
 );
 
+TextStyle foruthTextStyle = GoogleFonts.poppins(
+  color: secondaryColor,
+);
+
+
+
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;
