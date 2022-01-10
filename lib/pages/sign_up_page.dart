@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/providers/auth_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
 class SignUpPage extends StatelessWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+  // const SignUpPage({Key? key}) : super(key: key);
+
+  TextEditingController fullnameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      if (await authProvider.register(
+        fullname: fullnameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: secondaryColor,
+            content: Text(
+              'Gagal Register',
+              textAlign: TextAlign.center,
+            )));
+      }
+    }
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: 46),
@@ -49,6 +74,7 @@ class SignUpPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
+                        controller: fullnameController,
                         decoration: InputDecoration(
                           hintText: 'Your Full Name',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
@@ -92,6 +118,7 @@ class SignUpPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: 'Your Email Address',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
@@ -135,6 +162,7 @@ class SignUpPage extends StatelessWidget {
                       Expanded(
                         child: TextFormField(
                           style: primaryTextStyle.copyWith(fontSize: 20),
+                          controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: 'Your Password',
@@ -156,9 +184,10 @@ class SignUpPage extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 50),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          onPressed: handleSignUp,
+          // () {
+          //   Navigator.pushNamed(context, '/home');
+          // },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(

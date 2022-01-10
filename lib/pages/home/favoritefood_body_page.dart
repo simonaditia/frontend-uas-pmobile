@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
-class SkillBodyPage extends StatefulWidget {
-  // const SkillBodyPage({Key? key}) : super(key: key);
+class FavoriteFoodBodyPage extends StatefulWidget {
+  // const FavoriteFoodBodyPage({Key? key}) : super(key: key);
 
   @override
-  State<SkillBodyPage> createState() => _SkillBodyPageState();
+  State<FavoriteFoodBodyPage> createState() => _FavoriteFoodBodyPageState();
 }
 
-class _SkillBodyPageState extends State<SkillBodyPage> {
+class _FavoriteFoodBodyPageState extends State<FavoriteFoodBodyPage> {
   Future<void> showInformationDialog(BuildContext context) async {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     return await showDialog(
@@ -70,7 +70,7 @@ class _SkillBodyPageState extends State<SkillBodyPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    Widget mySkill(String name) {
+    Widget favoriteFood(String assets, String name) {
       return GestureDetector(
         onTap: () async {
           await showInformationDialog(context);
@@ -96,26 +96,25 @@ class _SkillBodyPageState extends State<SkillBodyPage> {
               ),
             ],
           ),
-          child: Container(
-            height: 60,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 25),
-                  child: Text(
-                    name,
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      color: Color(0xFF3D3D3D),
-                      fontWeight: regular,
-                    ),
-                  ),
+          child: Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: Image.asset(
+                  assets,
+                  // height: 165,
+                  width: double.infinity,
                 ),
-              ],
-            ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 210, left: 15),
+                child: Text(
+                  name,
+                  style: GoogleFonts.poppins(
+                      color: thirdColor, fontSize: 24, fontWeight: bold),
+                ),
+              ),
+            ],
           ),
         ),
       );
@@ -126,15 +125,11 @@ class _SkillBodyPageState extends State<SkillBodyPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            mySkill("Microsoft Office"),
-            mySkill("Figma"),
-            mySkill("Canva"),
-            mySkill("PHP"),
-            mySkill("CSS"),
-            mySkill("Javascript"),
-            mySkill("Laravel"),
-            mySkill("Java"),
-            mySkill("Adobe Premiere"),
+            favoriteFood("assets/nas.jpg", "Nasi Goreng"),
+            favoriteFood("assets/sot.jpg", "Soto"),
+            favoriteFood("assets/ren.jpg", "Rendang"),
+            favoriteFood("assets/gad.jpg", "Gado-gado"),
+            // favoriteFood("Figma"),
             Container(
               margin: EdgeInsets.only(top: 40),
             )
@@ -160,7 +155,7 @@ class _SkillBodyPageState extends State<SkillBodyPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Edit Skill",
+                      "Edit Favorite Food",
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         color: Color(0xFF3D3D3D),
@@ -185,7 +180,29 @@ class _SkillBodyPageState extends State<SkillBodyPage> {
                       },
                       style: primaryTextStyle.copyWith(fontSize: 18),
                       decoration: InputDecoration(
-                        hintText: "Laravel",
+                        hintText: "Nasi Goreng",
+                        hintStyle: primaryTextStyle.copyWith(fontSize: 18),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 20.0),
+                      child: Text(
+                        "Image",
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          color: Color(0xFF6B686D),
+                          fontWeight: regular,
+                        ),
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _textEditingController,
+                      validator: (value) {
+                        return value!.isNotEmpty ? null : "Invalid Field";
+                      },
+                      style: primaryTextStyle.copyWith(fontSize: 18),
+                      decoration: InputDecoration(
+                        hintText: "nasigoreng.jpg",
                         hintStyle: primaryTextStyle.copyWith(fontSize: 18),
                       ),
                     ),

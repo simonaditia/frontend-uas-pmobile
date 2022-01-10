@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/favoritefood_body_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/hobby_body_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/main_body_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/navigation_drawer.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/profile_body_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/skill_body_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/work_body_page.dart';
-import 'package:simonaditia_uas_pmobile/pages/models/work_model.dart';
-import 'package:simonaditia_uas_pmobile/providers/auth_provider.dart';
-import 'package:simonaditia_uas_pmobile/providers/work_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
-class WorkPage extends StatefulWidget {
-  const WorkPage({Key? key}) : super(key: key);
-  static final String title = "Work";
+class HobbyPage extends StatefulWidget {
+  const HobbyPage({Key? key}) : super(key: key);
+  static final String title = "Hobby";
 
   @override
-  State<WorkPage> createState() => _WorkPageState();
+  State<HobbyPage> createState() => _HobbyPageState();
   Widget build(BuildContext context) {
-    // WorkProvider workProvider = Provider.of<WorkProvider>(context);
-    // List<WorkModel> work = workProvider.works;
     return MaterialApp(
-      title: 'Work',
+      title: 'Hobby',
       theme: ThemeData(
         scaffoldBackgroundColor: thirdColor,
         primaryColor: primaryColor,
@@ -31,14 +28,14 @@ class WorkPage extends StatefulWidget {
   }
 }
 
-class _WorkPageState extends State<WorkPage> {
+class _HobbyPageState extends State<HobbyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawer(),
       appBar: AppBar(
         title: Text(
-          WorkPage.title,
+          HobbyPage.title,
           style: TextStyle(color: primaryColor),
         ),
         backgroundColor: thirdColor,
@@ -51,7 +48,7 @@ class _WorkPageState extends State<WorkPage> {
           showButtons();
         },
       ),
-      body: WorkBodyPage(),
+      body: HobbyBodyPage(),
     );
   }
 
@@ -69,7 +66,7 @@ class _WorkPageState extends State<WorkPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Add Work",
+                      "Add Hobby",
                       style: GoogleFonts.poppins(
                         fontSize: 20,
                         color: Color(0xFF3D3D3D),
@@ -94,14 +91,14 @@ class _WorkPageState extends State<WorkPage> {
                       },
                       style: primaryTextStyle.copyWith(fontSize: 18),
                       decoration: InputDecoration(
-                        hintText: "Job Name",
+                        hintText: "Hobby",
                         hintStyle: primaryTextStyle.copyWith(fontSize: 18),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 20.0),
                       child: Text(
-                        "Description",
+                        "Image",
                         style: GoogleFonts.poppins(
                           fontSize: 18,
                           color: Color(0xFF6B686D),
@@ -116,10 +113,32 @@ class _WorkPageState extends State<WorkPage> {
                       },
                       style: primaryTextStyle.copyWith(fontSize: 18),
                       decoration: InputDecoration(
-                        hintText: "Job Description",
+                        hintText: "Input Image",
                         hintStyle: primaryTextStyle.copyWith(fontSize: 18),
                       ),
                     ),
+                    // Container(
+                    //   margin: EdgeInsets.only(top: 20.0),
+                    //   child: Text(
+                    //     "Description",
+                    //     style: GoogleFonts.poppins(
+                    //       fontSize: 18,
+                    //       color: Color(0xFF6B686D),
+                    //       fontWeight: regular,
+                    //     ),
+                    //   ),
+                    // ),
+                    // TextFormField(
+                    //   controller: _textEditingController,
+                    //   validator: (value) {
+                    //     return value!.isNotEmpty ? null : "Invalid Field";
+                    //   },
+                    //   style: primaryTextStyle.copyWith(fontSize: 18),
+                    //   decoration: InputDecoration(
+                    //     hintText: "Job Description",
+                    //     hintStyle: primaryTextStyle.copyWith(fontSize: 18),
+                    //   ),
+                    // ),
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     //   children: [

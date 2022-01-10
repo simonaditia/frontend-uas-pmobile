@@ -89,32 +89,11 @@ class _SkillPageState extends State<SkillPage> {
                       },
                       style: primaryTextStyle.copyWith(fontSize: 18),
                       decoration: InputDecoration(
-                        hintText: "Job Name",
+                        hintText: "Skill",
                         hintStyle: primaryTextStyle.copyWith(fontSize: 18),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 20.0),
-                      child: Text(
-                        "Description",
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          color: Color(0xFF6B686D),
-                          fontWeight: regular,
-                        ),
-                      ),
-                    ),
-                    TextFormField(
-                      controller: _textEditingController,
-                      validator: (value) {
-                        return value!.isNotEmpty ? null : "Invalid Field";
-                      },
-                      style: primaryTextStyle.copyWith(fontSize: 18),
-                      decoration: InputDecoration(
-                        hintText: "Job Description",
-                        hintStyle: primaryTextStyle.copyWith(fontSize: 18),
-                      ),
-                    ),
+
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     //   children: [

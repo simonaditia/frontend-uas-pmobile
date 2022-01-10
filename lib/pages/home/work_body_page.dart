@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/pages/models/work_model.dart';
+import 'package:simonaditia_uas_pmobile/providers/work_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
 class WorkBodyPage extends StatefulWidget {
@@ -68,7 +71,13 @@ class _WorkBodyPageState extends State<WorkBodyPage> {
 
   @override
   Widget build(BuildContext context) {
+    WorkProvider workProvider = Provider.of<WorkProvider>(context);
+    List<WorkModel> work = workProvider.works;
+
     Size size = MediaQuery.of(context).size;
+
+    // final WorkModel work2;
+    // myWork(this.work2);
 
     Widget myWork(String name, String description) {
       return GestureDetector(
@@ -135,6 +144,11 @@ class _WorkBodyPageState extends State<WorkBodyPage> {
       backgroundColor: thirdColor,
       body: SingleChildScrollView(
         child: Column(
+          // children: workProvider.works
+          //     .map(
+          //       (work) => myWork(),
+          //     )
+          //     .toList(),
           children: [
             myWork("Developer Mobile", "Membuat antarmuka aplikasi mobile"),
             myWork("Multimedia", "Membuat design dan editing video"),
@@ -189,7 +203,7 @@ class _WorkBodyPageState extends State<WorkBodyPage> {
                       },
                       style: primaryTextStyle.copyWith(fontSize: 18),
                       decoration: InputDecoration(
-                        hintText: "Job Name",
+                        hintText: "Developer Mobile",
                         hintStyle: primaryTextStyle.copyWith(fontSize: 18),
                       ),
                     ),
@@ -211,7 +225,7 @@ class _WorkBodyPageState extends State<WorkBodyPage> {
                       },
                       style: primaryTextStyle.copyWith(fontSize: 18),
                       decoration: InputDecoration(
-                        hintText: "Job Description",
+                        hintText: "Membuat antarmuka aplikasi mobile",
                         hintStyle: primaryTextStyle.copyWith(fontSize: 18),
                       ),
                     ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/education_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/favoritefood_page.dart';
+import 'package:simonaditia_uas_pmobile/pages/home/hobby_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/main_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/profile_page.dart';
 import 'package:simonaditia_uas_pmobile/pages/home/skill_page.dart';
@@ -46,16 +49,19 @@ class NavigationDrawer extends StatelessWidget {
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Education', icon: Icons.school,
+              onClicked: () => selectedItem(context, 4),
               // icon: ImageIcon(AssetImage('assets/icon_work.png'))
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Hobby', icon: Icons.directions_bike,
+              onClicked: () => selectedItem(context, 5),
               // icon: ImageIcon(AssetImage('assets/icon_work.png'))
             ),
             const SizedBox(height: 16),
             buildMenuItem(
               text: 'Favorite Food', icon: Icons.fastfood,
+              onClicked: () => selectedItem(context, 6),
               // icon: ImageIcon(AssetImage('assets/icon_work.png'))
             ),
             const SizedBox(height: 24),
@@ -115,6 +121,27 @@ class NavigationDrawer extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => SkillPage(),
+          ),
+        );
+        break;
+      case 4:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => EducationPage(),
+          ),
+        );
+        break;
+      case 5:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HobbyPage(),
+          ),
+        );
+        break;
+      case 6:
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => FavoriteFoodPage(),
           ),
         );
         break;

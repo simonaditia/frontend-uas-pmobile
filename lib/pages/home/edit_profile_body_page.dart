@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/pages/models/user_model.dart';
+import 'package:simonaditia_uas_pmobile/providers/auth_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
 class EditProfileBodyPage extends StatelessWidget {
@@ -7,6 +10,10 @@ class EditProfileBodyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+    print(user.picture);
+
     Size size = MediaQuery.of(context).size;
 
     Widget fullnameInput() {
@@ -38,7 +45,7 @@ class EditProfileBodyPage extends StatelessWidget {
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
                         decoration: InputDecoration(
-                          hintText: 'Your Full Name',
+                          hintText: '${user.fullname}',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
                         ),
                       ),
@@ -81,7 +88,7 @@ class EditProfileBodyPage extends StatelessWidget {
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
                         decoration: InputDecoration(
-                          hintText: 'Your Email Address',
+                          hintText: '${user.email}',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
                         ),
                       ),
@@ -167,7 +174,8 @@ class EditProfileBodyPage extends StatelessWidget {
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
                         decoration: InputDecoration(
-                          hintText: 'Your Status',
+                          hintText:
+                              '${user.status != null ? user.status : '-'}',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
                         ),
                       ),
@@ -210,7 +218,7 @@ class EditProfileBodyPage extends StatelessWidget {
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
                         decoration: InputDecoration(
-                          hintText: 'Your Phone',
+                          hintText: '${user.phone != null ? user.phone : '-'}',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
                         ),
                       ),
@@ -253,7 +261,8 @@ class EditProfileBodyPage extends StatelessWidget {
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
                         decoration: InputDecoration(
-                          hintText: 'Your Address',
+                          hintText:
+                              '${user.address != null ? user.address : '-'}',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
                         ),
                       ),
@@ -341,7 +350,7 @@ class EditProfileBodyPage extends StatelessWidget {
                       Container(
                         child: CircleAvatar(
                           backgroundImage: AssetImage(
-                            'assets/icon_s1.png',
+                            'assets/pict.jpg',
                           ),
                           radius: 50,
                         ),
@@ -353,7 +362,7 @@ class EditProfileBodyPage extends StatelessWidget {
             ),
             fullnameInput(),
             emailInput(),
-            passwordInput(),
+            // passwordInput(),
             statusInput(),
             phoneInput(),
             addressInput(),

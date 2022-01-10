@@ -1,11 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/providers/auth_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
 class SignInPage extends StatelessWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  // const SignInPage({Key? key}) : super(key: key);
+
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignIn() async {
+      if (await authProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamed(context, '/home');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: secondaryColor,
+            content: Text(
+              'Gagal Login',
+              textAlign: TextAlign.center,
+            )));
+      }
+    }
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: 46),
@@ -49,6 +72,7 @@ class SignInPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle.copyWith(fontSize: 20),
+                        controller: emailController,
                         decoration: InputDecoration(
                           hintText: 'Your Email Address',
                           hintStyle: primaryTextStyle.copyWith(fontSize: 20),
@@ -92,6 +116,7 @@ class SignInPage extends StatelessWidget {
                       Expanded(
                         child: TextFormField(
                           style: primaryTextStyle.copyWith(fontSize: 20),
+                          controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             hintText: 'Your Password',
@@ -113,9 +138,10 @@ class SignInPage extends StatelessWidget {
         width: double.infinity,
         margin: EdgeInsets.only(top: 50),
         child: TextButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/home');
-          },
+          onPressed: handleSignIn,
+          // () {
+          //   Navigator.pushNamed(context, '/home');
+          // },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(

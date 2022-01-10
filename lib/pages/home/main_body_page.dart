@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/pages/models/user_model.dart';
+import 'package:simonaditia_uas_pmobile/providers/auth_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
 class MainBodyPage extends StatelessWidget {
@@ -7,6 +10,9 @@ class MainBodyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: thirdColor,
@@ -56,7 +62,7 @@ class MainBodyPage extends StatelessWidget {
                                 margin: EdgeInsets.only(top: 10),
                                 child: CircleAvatar(
                                   backgroundImage: AssetImage(
-                                    'assets/icon_s1.png',
+                                    'assets/pict.jpg',
                                   ),
                                   radius: 30,
                                 ),
@@ -64,7 +70,7 @@ class MainBodyPage extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(top: 3),
                                 child: Text(
-                                  'Hello Gaiss',
+                                  '${user.fullname}',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
                                     fontSize: 24,
@@ -75,7 +81,12 @@ class MainBodyPage extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.only(bottom: 5),
                                 child: Text(
-                                  'Informatics Engineering Student',
+                                  // (() {
+                                  //   if(user.status != null) {
+                                  //     return 'test';
+                                  //   }
+                                  // })(),
+                                  '${user.status != null ? user.status : '-'}',
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
@@ -394,8 +405,6 @@ class MainBodyPage extends StatelessWidget {
                                   MyFavoriteFood("assets/ren.jpg"),
                                   MyFavoriteFood("assets/sot.jpg"),
                                   MyFavoriteFood("assets/gad.jpg"),
-                                  MyFavoriteFood("assets/nas.jpg"),
-                                  MyFavoriteFood("assets/ren.jpg"),
                                 ],
                               ),
                             ),

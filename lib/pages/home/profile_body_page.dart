@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:simonaditia_uas_pmobile/pages/models/user_model.dart';
+import 'package:simonaditia_uas_pmobile/providers/auth_provider.dart';
 import 'package:simonaditia_uas_pmobile/theme.dart';
 
 class ProfileBodyPage extends StatelessWidget {
@@ -7,6 +10,9 @@ class ProfileBodyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: thirdColor,
@@ -25,7 +31,7 @@ class ProfileBodyPage extends StatelessWidget {
                       Container(
                         child: CircleAvatar(
                           backgroundImage: AssetImage(
-                            'assets/icon_s1.png',
+                            'assets/pict.jpg',
                           ),
                           radius: 50,
                         ),
@@ -33,7 +39,7 @@ class ProfileBodyPage extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(top: 20),
                         child: Text(
-                          'Simon Aditia',
+                          '${user.fullname}',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: 20,
@@ -44,7 +50,7 @@ class ProfileBodyPage extends StatelessWidget {
                       Container(
                         margin: EdgeInsets.only(bottom: 5),
                         child: Text(
-                          'Informatics Engineering Student',
+                          '${user.status != null ? user.status : '-'}',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: 14,
@@ -98,7 +104,7 @@ class ProfileBodyPage extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.only(left: 24),
                             child: Text(
-                              'Simon Aditia',
+                              'Email',
                               style: GoogleFonts.poppins(
                                 fontSize: 20,
                                 color: Color(0xFF3D3D3D),
@@ -108,7 +114,7 @@ class ProfileBodyPage extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.only(left: 24),
                             child: Text(
-                              'simon.aditia19@mhs.ubharajaya.ac.id',
+                              '${user.email}',
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 color: Color(0xFF6B686D),
@@ -171,7 +177,7 @@ class ProfileBodyPage extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.only(left: 24),
                             child: Text(
-                              '+6285499440245',
+                              '${user.phone != null ? user.phone : '-'}',
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 color: Color(0xFF6B686D),
@@ -234,7 +240,7 @@ class ProfileBodyPage extends StatelessWidget {
                           Container(
                             margin: EdgeInsets.only(left: 30),
                             child: Text(
-                              'Perumnas 1 Bekasi Selatan 17144',
+                              '${user.address != null ? user.address : '-'}',
                               style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 color: Color(0xFF6B686D),
@@ -275,7 +281,7 @@ class ProfileBodyPage extends StatelessWidget {
               margin: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 0),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/logout');
+                  Navigator.pushNamed(context, '/sign-in');
                 },
                 style: TextButton.styleFrom(
                   backgroundColor: secondaryColor,
